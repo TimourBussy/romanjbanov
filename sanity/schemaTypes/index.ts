@@ -9,6 +9,7 @@ import ensembles from './ensembles'
 import image from './image'
 import schedule from './schedule'
 import button from './button'
+import gallery from './gallery'
 
 export const schemaTypes = [
   page,
@@ -22,4 +23,5 @@ export const schemaTypes = [
   image,
   schedule,
   button,
+  gallery,
 ]

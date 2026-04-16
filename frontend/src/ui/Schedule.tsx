@@ -3,7 +3,7 @@ import {useSettings} from '../hooks/usePages'
 import {Title} from './Title'
 import {Event} from './Event'
 
-export function Schedule() {
+export function Schedule({className}: {className?: string}) {
   const settings = useSettings()
   const {i18n} = useTranslation()
 
@@ -21,7 +21,7 @@ export function Schedule() {
     .slice(0, 5)
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className={`flex flex-col gap-6 ${className || ''}`}>
       {upcomingEvents.length > 0 && (
         <>
           <Title level={4} colored>

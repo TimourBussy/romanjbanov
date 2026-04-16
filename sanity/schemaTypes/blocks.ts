@@ -8,4 +8,5 @@ export const BLOCKS = [
   {type: 'socialLinks'},
   {type: 'ensembles'},
   {type: 'schedule'},
+  {type: 'gallery'},
 ]

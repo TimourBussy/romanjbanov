@@ -34,12 +34,25 @@ export interface IEvent {
   link?: string
 }
 
+export interface IGallery {
+  _type: 'gallery'
+  _key: string
+}
+
+export interface IGalleryImage {
+  _key: string
+  asset: {url: string}
+  title: {FR: string; EN: string}
+  description?: {FR?: string; EN?: string}
+}
+
 export interface ISettings {
   _id: string
   socialMedias: ISocialMediaItem[]
   navigationMenu?: IMenuItem[]
   ensembles: IEnsemble[]
   schedule?: {events: IEvent[]}
+  gallery?: IGalleryImage[]
 }
 
 export interface IMargins {
@@ -52,7 +65,7 @@ export interface IMargins {
 export interface IGroup extends IMargins {
   _type: 'group'
   _key: string
-  blocks: (ITitle | IParagraph | ICardMenu | ISocialLinks | IEnsembles | ISchedule)[]
+  blocks: (ITitle | IParagraph | ICardMenu | ISocialLinks | IEnsembles | ISchedule | IGallery | IButton)[]
 }
 
 export interface ITitle extends IMargins {
@@ -128,7 +141,7 @@ export interface Page {
     altFr?: string
     altEn?: string
   }
-  body?: (IGroup | ITitle | IParagraph | IImg | ICardMenu | ISocialLinks | IEnsembles | ISchedule)[]
+  body?: (IGroup | ITitle | IParagraph | IImg | IButton | ICardMenu | ISocialLinks | IEnsembles | ISchedule | IGallery)[]
 }
 
 export interface IMenuSubItem {
@@ -197,10 +210,16 @@ const BLOCK_QUERY = `
     ${MARGINS}
   },
   _type == "ensembles" => {
-    _type, _key
+    _type, _key,
+    ${MARGINS}
   },
   _type == "schedule" => {
-    _type, _key
+    _type, _key,
+    ${MARGINS}
+  },
+  _type == "gallery" => {
+    _type, _key,
+    ${MARGINS}
   }
 `
 
@@ -267,6 +286,12 @@ export function useSettings() {
               location,
               link
             }
+          },
+          gallery[]{
+            _key,
+            asset->{ url },
+            title,
+            description
           },
         }`,
       )

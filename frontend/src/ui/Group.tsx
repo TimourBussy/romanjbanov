@@ -8,31 +8,9 @@ export const MARGIN_CLASSES: Record<string, Record<number, string>> = {
   mr: {4: 'mr-4', 8: 'mr-8', 12: 'mr-12', 16: 'mr-16', 20: 'mr-20', 24: 'mr-24'},
 }
 
-export function Group({
-  blocks,
-  marginTop,
-  marginRight,
-  marginBottom,
-  marginLeft,
-}: {
-  blocks: TBlock[]
-  marginTop?: number
-  marginRight?: number
-  marginBottom?: number
-  marginLeft?: number
-}) {
+export function Group({blocks, className}: {blocks: TBlock[]; className?: string}) {
   return (
-    <section
-      className={[
-        'flex flex-col gap-4 sm:gap-6',
-        marginTop && MARGIN_CLASSES.mt[marginTop],
-        marginBottom && MARGIN_CLASSES.mb[marginBottom],
-        marginLeft && MARGIN_CLASSES.ml[marginLeft],
-        marginRight && MARGIN_CLASSES.mr[marginRight],
-      ]
-        .filter(Boolean)
-        .join(' ')}
-    >
+    <section className={`flex flex-col gap-4 sm:gap-6 ${className || ''}`}>
       {blocks.map((block) => (
         <Block key={block._key} block={block} />
       ))}

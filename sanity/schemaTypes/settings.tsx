@@ -316,6 +316,54 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            {
+              name: 'title',
+              title: 'Title *',
+              type: 'object',
+              fields: [
+                {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+                {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
+              ],
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'object',
+              fields: [
+                {name: 'FR', title: 'Français', type: 'text'},
+                {name: 'EN', title: 'English', type: 'text'},
+              ],
+            },
+          ],
+          preview: {
+            select: {
+              image: 'asset',
+              titleFr: 'title.FR',
+              titleEn: 'title.EN',
+            },
+            prepare({image, titleFr, titleEn}) {
+              return {
+                media: image,
+                title: titleFr && titleEn ? `${titleFr} / ${titleEn}` : titleFr || titleEn || 'Untitled',
+              }
+            },
+          },
+        },
+      ],
+      options: {
+        layout: 'grid',
+      },
+    }),
   ],
   preview: {
     select: {

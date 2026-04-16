@@ -14,11 +14,13 @@ import type {
   IImg,
   ISchedule,
   IButton,
+  IGallery,
 } from '../hooks/usePages'
 import {Ensembles} from './Ensembles'
 import {Image} from './Image'
 import {Schedule} from './Schedule'
 import {Button} from './Button'
+import { Gallery } from './Gallery'
 
 export type TBlock =
   | IGroup
@@ -30,6 +32,7 @@ export type TBlock =
   | ISocialLinks
   | IEnsembles
   | ISchedule
+  | IGallery
 
 export function Block({block}: {block: TBlock}) {
   const {i18n} = useTranslation()
@@ -44,16 +47,7 @@ export function Block({block}: {block: TBlock}) {
     .join(' ')
 
   if (block._type === 'group')
-    return (
-      <Group
-        key={block._key}
-        blocks={block.blocks}
-        marginTop={block.marginTop}
-        marginRight={block.marginRight}
-        marginBottom={block.marginBottom}
-        marginLeft={block.marginLeft}
-      />
-    )
+    return <Group key={block._key} blocks={block.blocks} className={marginClasses} />
   else if (block._type === 'title')
     return (
       <Title key={block._key} level={block.level} colored={block.colored} className={marginClasses}>
@@ -74,20 +68,21 @@ export function Block({block}: {block: TBlock}) {
         alt={i18n.language === 'FR' ? block.alt?.FR || '' : block.alt?.EN || ''}
         width={block.dimensionType === 'width' ? block.dimension : undefined}
         height={block.dimensionType === 'height' ? block.dimension : undefined}
+        className={marginClasses}
       />
     )
   else if (block._type === 'button')
-    return <Button key={block._key} text={block.text} link={block.link} />
+    return <Button key={block._key} text={block.text} link={block.link} className={marginClasses} />
   else if (block._type === 'cardMenu')
     return (
       <CardMenu
         key={block._key}
-        className={marginClasses}
         cards={block.cards.map((card) => ({
           title: i18n.language === 'FR' ? card.title.FR : card.title.EN,
           paragraph: i18n.language === 'FR' ? card.description.FR : card.description.EN,
           to: card.destinationPage?.slug.FR?.current || '#',
         }))}
+        className={marginClasses}
       />
     )
   else if (block._type === 'socialLinks')
@@ -99,7 +94,10 @@ export function Block({block}: {block: TBlock}) {
         className={marginClasses}
       />
     )
-  else if (block._type === 'ensembles') return <Ensembles key={block._key} />
-  else if (block._type === 'schedule') return <Schedule key={block._key} />
+  else if (block._type === 'ensembles')
+    return <Ensembles key={block._key} className={marginClasses} />
+  else if (block._type === 'schedule')
+    return <Schedule key={block._key} className={marginClasses} />
+  else if (block._type === 'gallery') return <Gallery key={block._key} className={marginClasses} />
   return null
 }

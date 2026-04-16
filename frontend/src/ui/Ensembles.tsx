@@ -2,16 +2,16 @@ import {useSettings} from '../hooks/usePages'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
 import {Title} from './Title'
-import { Paragraph } from './Paragraph'
+import {Paragraph} from './Paragraph'
 
-export function Ensembles() {
+export function Ensembles({className}: {className?: string}) {
   const settings = useSettings()
   const {i18n} = useTranslation()
 
   if (!settings?.ensembles?.length) return null
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 -mx-12">
+    <section className={`grid grid-cols-1 sm:grid-cols-2 gap-8 -mx-12 ${className || ''}`}>
       {settings.ensembles.map((ensemble) => (
         <Link
           key={ensemble.slug.current}
@@ -25,7 +25,7 @@ export function Ensembles() {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />
           </div>
-          <Title level={4} align="left" className='group-hover:text-amber-700 transition-colors'>
+          <Title level={4} align="left" className="group-hover:text-amber-700 transition-colors">
             {ensemble.name}
           </Title>
           {ensemble.previewDesc && (
