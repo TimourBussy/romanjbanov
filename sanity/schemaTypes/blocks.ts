@@ -9,4 +9,5 @@ export const BLOCKS = [
   {type: 'ensembles'},
   {type: 'schedule'},
   {type: 'gallery'},
+  {type: 'contactForm'},
 ]

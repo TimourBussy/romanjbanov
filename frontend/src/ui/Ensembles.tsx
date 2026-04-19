@@ -11,7 +11,7 @@ export function Ensembles({className}: {className?: string}) {
   if (!settings?.ensembles?.length) return null
 
   return (
-    <section className={`grid grid-cols-1 sm:grid-cols-2 gap-8 -mx-12 ${className || ''}`}>
+    <section className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 mx-48 lg:-mx-12 ${className || ''}`}>
       {settings.ensembles.map((ensemble) => (
         <Link
           key={ensemble.slug.current}

@@ -15,12 +15,14 @@ import type {
   ISchedule,
   IButton,
   IGallery,
+  IContactForm,
 } from '../hooks/usePages'
 import {Ensembles} from './Ensembles'
 import {Image} from './Image'
 import {Schedule} from './Schedule'
 import {Button} from './Button'
-import { Gallery } from './Gallery'
+import {Gallery} from './Gallery'
+import {ContactForm} from './ContactForm'
 
 export type TBlock =
   | IGroup
@@ -33,6 +35,7 @@ export type TBlock =
   | IEnsembles
   | ISchedule
   | IGallery
+  | IContactForm
 
 export function Block({block}: {block: TBlock}) {
   const {i18n} = useTranslation()
@@ -99,5 +102,7 @@ export function Block({block}: {block: TBlock}) {
   else if (block._type === 'schedule')
     return <Schedule key={block._key} className={marginClasses} />
   else if (block._type === 'gallery') return <Gallery key={block._key} className={marginClasses} />
+  else if (block._type === 'contactForm')
+    return <ContactForm key={block._key} className={marginClasses} />
   return null
 }

@@ -10,6 +10,7 @@ import image from './image'
 import schedule from './schedule'
 import button from './button'
 import gallery from './gallery'
+import contactForm from './contactForm'
 
 export const schemaTypes = [
   page,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   schedule,
   button,
   gallery,
+  contactForm,
 ]

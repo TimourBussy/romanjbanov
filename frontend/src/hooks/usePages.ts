@@ -65,7 +65,16 @@ export interface IMargins {
 export interface IGroup extends IMargins {
   _type: 'group'
   _key: string
-  blocks: (ITitle | IParagraph | ICardMenu | ISocialLinks | IEnsembles | ISchedule | IGallery | IButton)[]
+  blocks: (
+    | ITitle
+    | IParagraph
+    | ICardMenu
+    | ISocialLinks
+    | IEnsembles
+    | ISchedule
+    | IGallery
+    | IButton
+  )[]
 }
 
 export interface ITitle extends IMargins {
@@ -128,6 +137,11 @@ export interface ISocialLinks extends IMargins {
   colored: boolean
 }
 
+export interface IContactForm extends IMargins {
+  _type: 'contactForm'
+  _key: string
+}
+
 export interface Page {
   _id: string
   title: {EN: string; FR: string}
@@ -141,7 +155,19 @@ export interface Page {
     altFr?: string
     altEn?: string
   }
-  body?: (IGroup | ITitle | IParagraph | IImg | IButton | ICardMenu | ISocialLinks | IEnsembles | ISchedule | IGallery)[]
+  body?: (
+    | IGroup
+    | ITitle
+    | IParagraph
+    | IImg
+    | IButton
+    | ICardMenu
+    | ISocialLinks
+    | IEnsembles
+    | ISchedule
+    | IGallery
+    | IContactForm
+  )[]
 }
 
 export interface IMenuSubItem {
@@ -218,6 +244,10 @@ const BLOCK_QUERY = `
     ${MARGINS}
   },
   _type == "gallery" => {
+    _type, _key,
+    ${MARGINS}
+  },
+  _type == "contactForm" => {
     _type, _key,
     ${MARGINS}
   }

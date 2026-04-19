@@ -28,9 +28,7 @@ export function SocialLinks({
   if (!settings.socialMedias?.length) return null
 
   return (
-    <article
-      className={`flex flex-wrap justify-center text-center gap-6 ${className || ''}`}
-    >
+    <article className={`flex flex-wrap justify-center text-center gap-6 ${className || ''}`}>
       {settings.socialMedias.map((link, index) => {
         const IconComponent = getIcon(link.icon)
         return (
@@ -44,7 +42,7 @@ export function SocialLinks({
                     large: 32,
                   }[size]
                 }
-                className={colored ? 'text-amber-700' : (inFooter ? 'text-gray-400 group-hover:text-amber-700' : 'text-gray-800 group-hover:text-amber-500')}
+                className={`${colored ? 'text-amber-700' : `${inFooter ? 'text-gray-400' : 'text-gray-800'} group-hover:text-amber-700`}`}
               />
             </div>
             {size === 'large' && (

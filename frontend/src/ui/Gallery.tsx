@@ -24,7 +24,7 @@ export function Gallery({className}: {className?: string}) {
 
   return (
     <>
-      <section className={`grid grid-cols-1 2xl:grid-cols-3 gap-6 -mx-46 ${className || ''}`}>
+      <section className={`grid lg:grid-cols-3 gap-6 mx-4 sm:mx-12 md:mx-20 lg:-mx-20 xl:-mx-46 ${className || ''}`}>
         {settings.gallery.map((image, i) => {
           const title = i18n.language === 'FR' ? image.title?.FR : image.title?.EN
 
