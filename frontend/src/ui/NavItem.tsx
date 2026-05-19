@@ -1,6 +1,7 @@
 import {NavLink, useLocation} from 'react-router-dom'
 import {useState} from 'react'
 import {FiChevronDown} from 'react-icons/fi'
+import {Submenu, type SubmenuItem} from './Submenu'
 
 export function NavItem({
   to,
@@ -19,6 +20,17 @@ export function NavItem({
   const isChildActive = subItems?.some((item) => location.pathname.startsWith(item.to)) ?? false
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const submenuItems: SubmenuItem[] = subItems?.map((item) => ({
+    to: item.to,
+    label: item.label,
+    onClick: onClick,
+  })) || []
+
+  const handleSubmenuItemClick = (item: SubmenuItem) => {
+    item.onClick?.()
+    setMobileOpen(false)
+  }
+
   return (
     <li className={className || 'group relative'}>
       {/* Desktop */}
@@ -26,7 +38,7 @@ export function NavItem({
         to={to}
         onClick={onClick}
         className={({isActive}) =>
-          `hidden md:flex gap-1 px-2 py-2 hover:text-amber-700 transition-colors duration-200 ${isActive || isChildActive ? 'font-semibold text-amber-700' : ''}`
+          `hidden md:flex gap-1 px-2 py-2 transition-colors duration-200 ${isActive || isChildActive ? 'font-semibold text-amber-700' : 'hover:text-amber-700'}`
         }
         end
       >
@@ -42,16 +54,24 @@ export function NavItem({
       {/* Mobile */}
       <div className="md:hidden">
         {subItems ? (
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`w-full flex gap-1 items-center px-2 py-2 font-semibold transition-colors duration-200`}
-          >
-            {children}
-            <FiChevronDown
-              className={`mt-0.5 ${mobileOpen ? 'rotate-180' : ''} transition-transform duration-200`}
-              aria-hidden
+          <>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="w-full flex gap-1 items-center px-2 py-2 font-semibold transition-colors duration-200"
+            >
+              {children}
+              <FiChevronDown
+                className={`mt-0.5 ${mobileOpen ? 'rotate-180' : ''} transition-transform duration-200`}
+                aria-hidden
+              />
+            </button>
+            <Submenu
+              isOpen={mobileOpen}
+              items={submenuItems}
+              variant="inline"
+              onItemClick={handleSubmenuItemClick}
             />
-          </button>
+          </>
         ) : (
           <NavLink
             to={to}
@@ -63,24 +83,6 @@ export function NavItem({
           >
             {children}
           </NavLink>
-        )}
-
-        {subItems && mobileOpen && (
-          <ul className="flex flex-col bg-gray-50">
-            {subItems.map((item) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  onClick={onClick}
-                  className={({isActive}) =>
-                    `block pl-6 pr-4 py-2 ${isActive ? 'font-semibold text-amber-700' : ''}`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
         )}
       </div>
 

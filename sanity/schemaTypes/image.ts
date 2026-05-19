@@ -18,6 +18,7 @@ export default defineType({
       type: 'object',
       fields: [
         {name: 'FR', title: 'Français', type: 'text'},
+        {name: 'RU', title: 'Русский', type: 'text'},
         {name: 'EN', title: 'English', type: 'text'},
       ],
     }),
@@ -49,7 +50,7 @@ export default defineType({
     },
     prepare({alt, media}) {
       return {
-        title: alt?.FR || alt?.EN || 'Image',
+        title: alt?.FR || alt?.RU || alt?.EN || 'Image',
         media,
       }
     }

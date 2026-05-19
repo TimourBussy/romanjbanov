@@ -6,7 +6,7 @@ import {DATASET, PROJECT_ID} from './sanity/settings'
 
 export default defineConfig({
   name: 'default',
-  title: 'domiemorine',
+  title: 'romanjbanov',
 
   projectId: PROJECT_ID,
   dataset: DATASET,

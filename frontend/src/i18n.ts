@@ -6,6 +6,11 @@ i18n
   .init({
     lng: 'FR',
     fallbackLng: 'FR',
+    resources: {
+      FR: {},
+      EN: {},
+      RU: {},
+    },
     interpolation: {
       escapeValue: false,
     },

@@ -26,7 +26,7 @@ export function Event({
       key={index}
       className={`flex flex-col gap-2 border-l-4 ${colored ? 'border-amber-700' : 'border-gray-400'} px-6 py-4`}
     >
-      <div className="flex gap-4 font-semibold text-gray-900">
+      <div className="flex gap-4 font-semibold">
         <p className={colored ? "text-amber-700" : "text-slate-500"}>
           {new Intl.DateTimeFormat(i18n.language === 'FR' ? 'fr-FR' : 'en-US', {
             day: 'numeric',

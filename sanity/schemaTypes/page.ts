@@ -12,6 +12,7 @@ export default defineType({
       type: 'object',
       fields: [
         {name: 'FR', title: 'Français', type: 'string'},
+        {name: 'RU', title: 'Русский', type: 'string'},
         {name: 'EN', title: 'English', type: 'string'},
       ],
       validation: (rule) => rule.required(),
@@ -44,6 +45,7 @@ export default defineType({
       fields: [
         {name: 'src', title: 'Source', type: 'image'},
         {name: 'altFr', title: 'Texte alternatif Français', type: 'string'},
+        {name: 'altRu', title: 'Альтернативный текст Русский', type: 'string'},
         {name: 'altEn', title: 'Alternative text English', type: 'string'},
       ],
     }),
@@ -61,13 +63,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      en: 'title.EN',
       fr: 'title.FR',
+      ru: 'title.RU',
+      en: 'title.EN',
       media: 'heroImage.src',
     },
-    prepare({en, fr, media}) {
+    prepare({fr, ru, en, media}) {
       return {
-        title: `${fr || ''} / ${en || ''}`,
+        title: `${fr || ''} / ${ru || ''} / ${en || ''}`,
         media,
       }
     },

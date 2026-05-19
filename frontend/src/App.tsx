@@ -5,7 +5,7 @@ import {Page} from './layout/Page'
 import {Footer} from './layout/Footer'
 import {ScrollToTop} from './ui/ScrollToTop'
 import {useTranslation} from 'react-i18next'
-import { EnsemblePage } from './layout/EnsemblePage'
+import {EnsemblePage} from './layout/EnsemblePage'
 
 export default function App() {
   const pages = usePages()
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col text-gray-900">
         <Header />
         <Routes>
           <Route path="/" element={<Page slug="/" />} />
@@ -34,7 +34,7 @@ export default function App() {
                 <Route
                   key={`${page._id}-en`}
                   path={`/${slugEN}`}
-                  element={<Page slug={slugFR} />}
+                  element={<Page slug={slugEN} />}
                 />,
               )
             }
@@ -45,7 +45,11 @@ export default function App() {
             element={
               <main className="flex-1 flex flex-col items-center justify-center">
                 <p className="text-2xl text-gray-700">
-                  {i18n.language === 'FR' ? 'Page non trouvée' : 'Page not found'}
+                  {i18n.language === 'FR'
+                    ? 'Page non trouvée'
+                    : i18n.language === 'RU'
+                      ? 'Страница не найдена'
+                      : 'Page not found'}
                 </p>
               </main>
             }

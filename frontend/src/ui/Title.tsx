@@ -2,14 +2,15 @@ import {tv} from 'tailwind-variants'
 import type {JSX} from 'react'
 
 const titleStyle = tv({
+  base: 'font-semibold',
   variants: {
     level: {
-      1: 'uppercase [word-spacing:0.75rem] font-light tracking-tight text-4xl sm:text-5xl',
-      2: 'text-4xl sm:text-5xl font-semibold',
-      3: 'text-2xl sm:text-3xl font-semibold',
-      4: 'text-xl sm:text-2xl font-semibold leading-none',
-      5: 'text-lg sm:text-xl font-semibold leading-none',
-      6: 'sm:text-lg font-semibold leading-none',
+      1: 'text-4xl sm:text-xl',
+      2: 'text-4xl sm:text-5xl',
+      3: 'text-2xl sm:text-3xl',
+      4: 'text-xl sm:text-2xl leading-none',
+      5: 'text-lg sm:text-xl leading-none',
+      6: 'sm:text-lg leading-none',
     },
     colored: {
       true: 'text-amber-700',

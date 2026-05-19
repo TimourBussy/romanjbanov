@@ -12,6 +12,7 @@ export default defineType({
       type: 'object',
       fields: [
         {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+        {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required()},
         {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
       ],
       validation: (rule) => rule.required(),
@@ -28,13 +29,14 @@ export default defineType({
   preview: {
     select: {
       fr: 'text.FR',
+      ru: 'text.RU',
       en: 'text.EN',
       linkTitle: 'link.title',
     },
-    prepare({fr, en, linkTitle}) {
+    prepare({fr, ru, en, linkTitle}) {
       return {
-        title: `${fr || ''} / ${en || ''}`.trim(),
-        subtitle: linkTitle && `To: ${linkTitle.FR || ''} / ${linkTitle.EN || ''}`.trim(),
+        title: `${fr || ''} / ${ru || ''} / ${en || ''}`.trim(),
+        subtitle: linkTitle && `To: ${linkTitle.FR || ''} / ${linkTitle.RU || ''} / ${linkTitle.EN || ''}`.trim(),
       }
     },
   },

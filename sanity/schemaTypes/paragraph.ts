@@ -12,6 +12,7 @@ export default defineType({
       type: 'object',
       fields: [
         { name: 'FR', title: 'Français', type: 'text' },
+        { name: 'RU', title: 'Русский', type: 'text' },
         { name: 'EN', title: 'English', type: 'text' },
       ],
       validation: (rule) => rule.required()
@@ -34,11 +35,12 @@ export default defineType({
   preview: {
     select: {
       fr: 'content.FR',
+      ru: 'content.RU',
       en: 'content.EN',
       size: 'size',
     },
-    prepare({fr, en, size}) {
-      const text = fr || en || 'Empty paragraph'
+    prepare({fr, ru, en, size}) {
+      const text = fr || ru || en || 'Empty paragraph'
       const preview = text.length > 50 ? `${text.substring(0, 50)}...` : text
       return {
         title: preview,
