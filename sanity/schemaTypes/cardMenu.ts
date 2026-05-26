@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
-import { spacingFields } from './spacing'
+import {commonFields} from './commonFields'
+import {IconSelector} from '../components/IconSelector'
 
 export default defineType({
   name: 'cardMenu',
@@ -15,22 +16,51 @@ export default defineType({
           type: 'object',
           fields: [
             {
+              name: 'icon',
+              title: 'Icon',
+              type: 'string',
+              components: {
+                input: IconSelector,
+              },
+            },
+            {
               name: 'title',
               title: 'Title *',
               type: 'object',
               fields: [
-                {name: 'FR', title: 'Français', type: 'string'},
-                {name: 'EN', title: 'English', type: 'string'},
+                {
+                  name: 'FR',
+                  title: 'Français',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                },
+                {
+                  name: 'RU',
+                  title: 'Русский',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                },
+                {
+                  name: 'EN',
+                  title: 'English',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                },
               ],
-              validation: (rule) => rule.required(),
             },
             {
               name: 'description',
               title: 'Description *',
               type: 'object',
               fields: [
-                {name: 'FR', title: 'Français', type: 'text'},
-                {name: 'EN', title: 'English', type: 'text'},
+                {
+                  name: 'FR',
+                  title: 'Français',
+                  type: 'text',
+                  validation: (rule) => rule.required(),
+                },
+                {name: 'RU', title: 'Русский', type: 'text', validation: (rule) => rule.required()},
+                {name: 'EN', title: 'English', type: 'text', validation: (rule) => rule.required()},
               ],
             },
             {
@@ -43,7 +73,7 @@ export default defineType({
         },
       ],
     }),
-    ...spacingFields,
+    ...commonFields,
   ],
   preview: {
     select: {

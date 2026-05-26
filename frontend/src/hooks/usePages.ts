@@ -55,14 +55,15 @@ export interface ISettings {
   gallery?: IGalleryImage[]
 }
 
-export interface IMargins {
-  marginTop?: number
-  marginRight?: number
-  marginBottom?: number
-  marginLeft?: number
+export interface IPadding {
+  paddingTop?: number
+  paddingRight?: number
+  paddingBottom?: number
+  paddingLeft?: number
+  backgroundColor?: string
 }
 
-export interface IGroup extends IMargins {
+export interface IGroup extends IPadding {
   _type: 'group'
   _key: string
   blocks: (
@@ -77,7 +78,7 @@ export interface IGroup extends IMargins {
   )[]
 }
 
-export interface ITitle extends IMargins {
+export interface ITitle extends IPadding {
   _type: 'title'
   _key: string
   content: {FR: string; EN: string}
@@ -85,14 +86,14 @@ export interface ITitle extends IMargins {
   colored: boolean
 }
 
-export interface IParagraph extends IMargins {
+export interface IParagraph extends IPadding {
   _type: 'paragraph'
   _key: string
   content: {FR: string; EN: string}
   size: 'small' | 'large'
 }
 
-export interface IImg extends IMargins {
+export interface IImg extends IPadding {
   _type: 'img'
   _key: string
   src: {asset: {url: string}}
@@ -101,7 +102,7 @@ export interface IImg extends IMargins {
   dimension?: number
 }
 
-export interface IButton extends IMargins {
+export interface IButton extends IPadding {
   _type: 'button'
   _key: string
   text: {FR: string; EN: string}
@@ -124,20 +125,20 @@ export interface ICardMenuItem {
   }
 }
 
-export interface ICardMenu extends IMargins {
+export interface ICardMenu extends IPadding {
   _type: 'cardMenu'
   _key: string
   cards: ICardMenuItem[]
 }
 
-export interface ISocialLinks extends IMargins {
+export interface ISocialLinks extends IPadding {
   _type: 'socialLinks'
   _key: string
   size: 'small' | 'medium' | 'large'
   colored: boolean
 }
 
-export interface IContactForm extends IMargins {
+export interface IContactForm extends IPadding {
   _type: 'contactForm'
   _key: string
 }
@@ -202,54 +203,54 @@ export function usePages() {
   return pages
 }
 
-const MARGINS = 'marginTop, marginRight, marginBottom, marginLeft'
+const PADDING = 'paddingTop, paddingRight, paddingBottom, paddingLeft, backgroundColor'
 
 const BLOCK_QUERY = `
   _type, _key,
   _type == "title" => {
     content, level, colored,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "paragraph" => {
     content, size,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "img" => {
     src{ asset->{ url } }, alt,
     dimensionType, dimension,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "button" => {
     text,
     link->{ slug { FR, EN } },
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "cardMenu" => {
     cards[]{
       title, description,
       destinationPage->{ slug { FR, EN } }
     },
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "socialLinks" => {
     size, colored,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "ensembles" => {
     _type, _key,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "schedule" => {
     _type, _key,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "gallery" => {
     _type, _key,
-    ${MARGINS}
+    ${PADDING}
   },
   _type == "contactForm" => {
     _type, _key,
-    ${MARGINS}
+    ${PADDING}
   }
 `
 
@@ -271,7 +272,7 @@ export function usePage(slug: string) {
           body[]{
             ${BLOCK_QUERY},
             _type == "group" => {
-              ${MARGINS},
+              ${PADDING},
               blocks[]{
                 ${BLOCK_QUERY}
               }

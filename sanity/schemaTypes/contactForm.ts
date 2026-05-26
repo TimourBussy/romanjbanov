@@ -1,11 +1,11 @@
 import {defineType} from 'sanity'
-import {spacingFields} from './spacing'
+import {commonFields} from './commonFields'
 
 export default defineType({
   name: 'contactForm',
   title: 'Contact Form',
   type: 'object',
-  fields: spacingFields,
+  fields: commonFields,
   preview: {
     prepare() {
       return {title: 'Contact Form'}

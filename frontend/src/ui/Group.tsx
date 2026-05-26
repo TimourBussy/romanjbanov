@@ -1,11 +1,11 @@
 import {Block} from './Block'
 import type {TBlock} from './Block'
 
-export const MARGIN_CLASSES: Record<string, Record<number, string>> = {
-  mt: {4: 'sm:mt-2 md:mt-4', 8: 'sm:mt-4 md:mt-8', 12: 'sm:mt-4 md:mt-8 lg:mt-12', 16: 'mt-4 sm:mt-8 md:mt-12 lg:mt-16', 20: 'mt-8 sm:mt-12 md:mt-16 lg:mt-20', 24: 'mt-12 sm:mt-16 md:mt-20 lg:mt-24'},
-  mb: {4: 'sm:mb-2 md:mb-4', 8: 'sm:mb-4 md:mb-8', 12: 'sm:mb-4 md:mb-8 lg:mb-12', 16: 'mb-4 sm:mb-8 md:mb-12 lg:mb-16', 20: 'mb-8 sm:mb-12 md:mb-16 lg:mb-20', 24: 'mb-12 sm:mb-16 md:mb-20 lg:mb-24'},
-  ml: {4: 'sm:ml-2 md:ml-4', 8: 'sm:ml-4 md:ml-8', 12: 'sm:ml-4 md:ml-8 lg:ml-12', 16: 'ml-4 sm:ml-8 md:ml-12 lg:ml-16', 20: 'ml-8 sm:ml-12 md:ml-16 lg:ml-20', 24: 'ml-12 sm:ml-16 md:ml-20 lg:ml-24'},
-  mr: {4: 'sm:mr-2 md:mr-4', 8: 'sm:mr-4 md:mr-8', 12: 'sm:mr-4 md:mr-8 lg:mr-12', 16: 'mr-4 sm:mr-8 md:mr-12 lg:mr-16', 20: 'mr-8 sm:mr-12 md:mr-16 lg:mr-20', 24: 'mr-12 sm:mr-16 md:mr-20 lg:mr-24'},
+export const PADDING_CLASSES: Record<string, Record<number, string>> = {
+  pt: {4: 'sm:pt-2 md:pt-4', 8: 'sm:pt-4 md:pt-8', 12: 'sm:pt-4 md:pt-8 lg:pt-12', 16: 'pt-4 sm:pt-8 md:pt-12 lg:pt-16', 20: 'pt-8 sm:pt-12 md:pt-16 lg:pt-20', 24: 'pt-12 sm:pt-16 md:pt-20 lg:pt-24'},
+  pb: {4: 'sm:pb-2 md:pb-4', 8: 'sm:pb-4 md:pb-8', 12: 'sm:pb-4 md:pb-8 lg:pb-12', 16: 'pb-4 sm:pb-8 md:pb-12 lg:pb-16', 20: 'pb-8 sm:pb-12 md:pb-16 lg:pb-20', 24: 'pb-12 sm:pb-16 md:pb-20 lg:pb-24'},
+  pl: {4: 'sm:pl-2 md:pl-4', 8: 'sm:pl-4 md:pl-8', 12: 'sm:pl-4 md:pl-8 lg:pl-12', 16: 'pl-4 sm:pl-8 md:pl-12 lg:pl-16', 20: 'pl-8 sm:pl-12 md:pl-16 lg:pl-20', 24: 'pl-12 sm:pl-16 md:pl-20 lg:pl-24'},
+  pr: {4: 'sm:pr-2 md:pr-4', 8: 'sm:pr-4 md:pr-8', 12: 'sm:pr-4 md:pr-8 lg:pr-12', 16: 'pr-4 sm:pr-8 md:pr-12 lg:pr-16', 20: 'pr-8 sm:pr-12 md:pr-16 lg:pr-20', 24: 'pr-12 sm:pr-16 md:pr-20 lg:pr-24'},
 }
 
 export function Group({blocks, className}: {blocks: TBlock[]; className?: string}) {

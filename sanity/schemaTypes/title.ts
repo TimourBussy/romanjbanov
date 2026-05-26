@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { spacingFields } from './spacing'
+import { commonFields } from './commonFields'
 
 export default defineType({
   name: 'title',
@@ -33,7 +33,7 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
-    ...spacingFields,
+    ...commonFields,
   ],
   preview: {
     select: {

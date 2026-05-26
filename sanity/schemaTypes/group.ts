@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {spacingFields} from './spacing'
+import {commonFields} from './commonFields'
 import {BLOCKS} from './blocks'
 
 export default defineType({
@@ -13,7 +13,7 @@ export default defineType({
       type: 'array',
       of: BLOCKS,
     }),
-    ...spacingFields,
+    ...commonFields,
   ],
   preview: {
     select: {

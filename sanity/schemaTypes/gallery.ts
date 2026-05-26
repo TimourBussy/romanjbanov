@@ -1,11 +1,11 @@
 import {defineType} from 'sanity'
-import {spacingFields} from './spacing'
+import {commonFields} from './commonFields'
 
 export default defineType({
   name: 'gallery',
   title: 'Gallery',
   type: 'object',
-  fields: spacingFields,
+  fields: commonFields,
   preview: {
     prepare() {
       return {title: 'Gallery'}
