@@ -4,7 +4,7 @@ export const BLOCKS = [
   {type: 'paragraph'},
   {type: 'img'},
   {type: 'button'},
-  {type: 'cardMenu'},
+  {type: 'cardList'},
   {type: 'socialLinks'},
   {type: 'ensembles'},
   {type: 'schedule'},

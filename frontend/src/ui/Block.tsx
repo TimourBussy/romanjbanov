@@ -1,13 +1,13 @@
 import {useTranslation} from 'react-i18next'
 import {Title} from './Title'
 import {Paragraph} from './Paragraph'
-import {CardMenu} from './CardMenu'
+import {CardList} from './CardList'
 import {SocialLinks} from './SocialLinks'
 import {Group, PADDING_CLASSES} from './Group'
 import type {
   ITitle,
   IParagraph,
-  ICardMenu,
+  ICardList,
   ISocialLinks,
   IGroup,
   IEnsembles,
@@ -30,7 +30,7 @@ export type TBlock =
   | IParagraph
   | IImg
   | IButton
-  | ICardMenu
+  | ICardList
   | ISocialLinks
   | IEnsembles
   | ISchedule
@@ -89,14 +89,13 @@ export function Block({block}: {block: TBlock}) {
     return (
       <Button key={block._key} text={block.text} link={block.link} className={combinedClasses} />
     )
-  else if (block._type === 'cardMenu')
+  else if (block._type === 'cardList')
     return (
-      <CardMenu
+      <CardList
         key={block._key}
         cards={block.cards.map((card) => ({
           title: i18n.language === 'FR' ? card.title.FR : card.title.EN,
           paragraph: i18n.language === 'FR' ? card.description.FR : card.description.EN,
-          to: card.destinationPage?.slug.FR?.current || '#',
         }))}
         className={combinedClasses}
       />

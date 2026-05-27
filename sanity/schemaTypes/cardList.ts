@@ -3,8 +3,8 @@ import {commonFields} from './commonFields'
 import {IconSelector} from '../components/IconSelector'
 
 export default defineType({
-  name: 'cardMenu',
-  title: 'Card Menu',
+  name: 'cardList',
+  title: 'Card List',
   type: 'object',
   fields: [
     defineField({
@@ -63,12 +63,6 @@ export default defineType({
                 {name: 'EN', title: 'English', type: 'text', validation: (rule) => rule.required()},
               ],
             },
-            {
-              name: 'destinationPage',
-              title: 'Destination Page',
-              type: 'reference',
-              to: [{type: 'page'}],
-            },
           ],
         },
       ],
@@ -81,7 +75,7 @@ export default defineType({
     },
     prepare({cards}) {
       return {
-        title: `Card Menu`,
+        title: `Card List`,
         subtitle: `${cards?.length || 0} card${cards?.length !== 1 ? 's' : ''}`,
       }
     },

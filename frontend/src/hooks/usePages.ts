@@ -69,7 +69,7 @@ export interface IGroup extends IPadding {
   blocks: (
     | ITitle
     | IParagraph
-    | ICardMenu
+    | ICardList
     | ISocialLinks
     | IEnsembles
     | ISchedule
@@ -114,21 +114,15 @@ export interface IButton extends IPadding {
   }
 }
 
-export interface ICardMenuItem {
+export interface ICardListItem {
   title: {FR: string; EN: string}
   description: {FR: string; EN: string}
-  destinationPage?: {
-    slug: {
-      FR: {current: string}
-      EN: {current: string}
-    }
-  }
 }
 
-export interface ICardMenu extends IPadding {
-  _type: 'cardMenu'
+export interface ICardList extends IPadding {
+  _type: 'cardList'
   _key: string
-  cards: ICardMenuItem[]
+  cards: ICardListItem[]
 }
 
 export interface ISocialLinks extends IPadding {
@@ -162,7 +156,7 @@ export interface Page {
     | IParagraph
     | IImg
     | IButton
-    | ICardMenu
+    | ICardList
     | ISocialLinks
     | IEnsembles
     | ISchedule
@@ -225,10 +219,9 @@ const BLOCK_QUERY = `
     link->{ slug { FR, EN } },
     ${PADDING}
   },
-  _type == "cardMenu" => {
+  _type == "cardList" => {
     cards[]{
       title, description,
-      destinationPage->{ slug { FR, EN } }
     },
     ${PADDING}
   },
