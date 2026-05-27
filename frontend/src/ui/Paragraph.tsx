@@ -8,6 +8,7 @@ const paragraphStyle = tv({
       xs: 'text-xs sm:text-sm',
       small: 'text-sm sm:text-base',
       large: 'sm:text-lg/7 sm:mx-16',
+      xl: 'text-lg sm:text-xl/8 sm:mx-156',
     },
     align: {
       left: 'text-left',
@@ -26,7 +27,7 @@ export function Paragraph({
   className,
   children,
 }: {
-  size?: 'xs' | 'small' | 'large'
+  size?: 'xs' | 'small' | 'large' | 'xl'
   align?: 'left' | 'center' | 'right'
   className?: string
   children: ReactNode

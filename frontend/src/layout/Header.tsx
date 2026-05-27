@@ -3,7 +3,6 @@ import {NavItem} from '../ui/NavItem'
 import {LanguageSwitcher} from '../ui/LanguageSwitcher'
 import {Link} from 'react-router-dom'
 import {useSettings} from '../hooks/usePages'
-import {Title} from '../ui/Title'
 import {useState} from 'react'
 import {FiMenu, FiMusic, FiX} from 'react-icons/fi'
 
@@ -23,7 +22,7 @@ export function Header() {
       <div className="flex h-16 items-center justify-between px-36">
         <Link to="/" className="cursor-pointer flex items-center gap-2">
           <FiMusic size={32} className="text-amber-700" />
-          <Title level={1}>Roman Jbanov</Title>
+          <span className="text-xl font-semibold text-gray-900">Roman Jbanov</span>
         </Link>
 
         {/* Menu desktop */}

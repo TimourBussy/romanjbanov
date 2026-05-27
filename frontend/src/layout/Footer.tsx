@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 text-center pt-12 pb-16 mt-12 cursor-default">
       <p className="text-lg mb-2">
-        Domi Emorine - {i18n.language === 'FR' ? 'Accordéoniste' : 'Accordionist'}
+        Roman Jbanov - {i18n.language === 'FR' ? 'Accordéoniste' : i18n.language === 'RU' ? 'Баянист' : 'Accordionist'}
       </p>
       <p className="text-sm text-gray-400 mb-6">
         © {new Date().getFullYear()} -{' '}
