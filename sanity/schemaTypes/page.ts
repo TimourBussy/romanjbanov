@@ -11,9 +11,9 @@ export default defineType({
       title: 'Title *',
       type: 'object',
       fields: [
-        {name: 'FR', title: 'Français', type: 'string'},
-        {name: 'RU', title: 'Русский', type: 'string'},
-        {name: 'EN', title: 'English', type: 'string'},
+        {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+        {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required()},
+        {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
       ],
       validation: (rule) => rule.required(),
     }),
@@ -40,16 +40,6 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'heroImage',
-      type: 'object',
-      fields: [
-        {name: 'src', title: 'Source', type: 'image'},
-        {name: 'altFr', title: 'Texte alternatif Français', type: 'string'},
-        {name: 'altRu', title: 'Альтернативный текст Русский', type: 'string'},
-        {name: 'altEn', title: 'Alternative text English', type: 'string'},
-      ],
-    }),
-    defineField({
       name: 'displayTitle',
       title: 'Display page title',
       type: 'boolean',
@@ -66,12 +56,10 @@ export default defineType({
       fr: 'title.FR',
       ru: 'title.RU',
       en: 'title.EN',
-      media: 'heroImage.src',
     },
-    prepare({fr, ru, en, media}) {
+    prepare({fr, ru, en}) {
       return {
         title: `${fr || ''} / ${ru || ''} / ${en || ''}`,
-        media,
       }
     },
   },

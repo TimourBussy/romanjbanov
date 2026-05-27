@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity'
-import { commonFields } from './commonFields'
+import {defineField, defineType} from 'sanity'
+import {commonFields} from './commonFields'
 
 export default defineType({
   name: 'title',
@@ -11,11 +11,11 @@ export default defineType({
       title: 'Title *',
       type: 'object',
       fields: [
-        { name: 'FR', title: 'Français', type: 'string' },
-        { name: 'RU', title: 'Русский', type: 'string' },
-        { name: 'EN', title: 'English', type: 'string' }
+        {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+        {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required()},
+        {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
       ],
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'level',
@@ -25,7 +25,7 @@ export default defineType({
         list: [3, 4, 5, 6],
       },
       initialValue: 3,
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'colored',

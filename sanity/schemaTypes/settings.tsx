@@ -183,11 +183,19 @@ export default defineType({
                   name: 'FR',
                   title: 'Français',
                   type: 'string',
+                  validation: (rule) => rule.required()
+                },
+                {
+                  name: 'RU',
+                  title: 'Русский',
+                  type: 'string',
+                  validation: (rule) => rule.required()
                 },
                 {
                   name: 'EN',
                   title: 'English',
                   type: 'string',
+                  validation: (rule) => rule.required()
                 },
               ],
             },
@@ -209,11 +217,19 @@ export default defineType({
                   name: 'FR',
                   title: 'Français',
                   type: 'text',
+                  validation: (rule) => rule.required()
+                },
+                {
+                  name: 'RU',
+                  title: 'Русский',
+                  type: 'text',
+                  validation: (rule) => rule.required()
                 },
                 {
                   name: 'EN',
                   title: 'English',
                   type: 'text',
+                  validation: (rule) => rule.required()
                 },
               ],
             },
@@ -303,8 +319,9 @@ export default defineType({
                   name: 'title',
                   type: 'object',
                   fields: [
-                    {name: 'FR', title: 'Français', type: 'string'},
-                    {name: 'EN', title: 'English', type: 'string'},
+                    {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+                    {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required()},
+                    {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
                   ],
                 },
                 {name: 'date', type: 'string'},
@@ -331,6 +348,7 @@ export default defineType({
               type: 'object',
               fields: [
                 {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required()},
+                {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required()},
                 {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required()},
               ],
               validation: (rule) => rule.required(),
@@ -340,8 +358,9 @@ export default defineType({
               title: 'Description',
               type: 'object',
               fields: [
-                {name: 'FR', title: 'Français', type: 'text'},
-                {name: 'EN', title: 'English', type: 'text'},
+                {name: 'FR', title: 'Français', type: 'text', validation: (rule) => rule.required()},
+                {name: 'RU', title: 'Русский', type: 'text', validation: (rule) => rule.required()},
+                {name: 'EN', title: 'English', type: 'text', validation: (rule) => rule.required()},
               ],
             },
           ],

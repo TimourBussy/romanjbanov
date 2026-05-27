@@ -16,8 +16,8 @@ export interface IEnsemble {
   name: string
   slug: {current: string}
   image: {asset: {url: string}}
-  previewDesc?: {FR?: string; EN?: string}
-  desc?: {FR?: string; EN?: string}
+  previewDesc?: {FR?: string; RU?: string; EN?: string}
+  desc?: {FR?: string; RU?: string; EN?: string}
   socialMedias?: ISocialMediaItem[]
 }
 
@@ -27,7 +27,7 @@ export interface ISchedule {
 }
 
 export interface IEvent {
-  title: {FR: string; EN: string}
+  title: {FR: string; RU: string; EN: string}
   date: string
   time?: string
   location?: string
@@ -42,8 +42,8 @@ export interface IGallery {
 export interface IGalleryImage {
   _key: string
   asset: {url: string}
-  title: {FR: string; EN: string}
-  description?: {FR?: string; EN?: string}
+  title: {FR: string; RU: string; EN: string}
+  description?: {FR?: string; RU?: string; EN?: string}
 }
 
 export interface ISettings {
@@ -67,6 +67,7 @@ export interface IGroup extends IPadding {
   _type: 'group'
   _key: string
   blocks: (
+    | IHeroImage
     | ITitle
     | IParagraph
     | ICardList
@@ -78,10 +79,20 @@ export interface IGroup extends IPadding {
   )[]
 }
 
+export interface IHeroImage extends IPadding {
+  _type: 'heroImage'
+  _key: string
+  src: {asset: {url: string}}
+  alt?: {FR?: string; RU?: string; EN?: string}
+  title?: {FR?: string; RU?: string; EN?: string}
+  subtitle?: {FR?: string; RU?: string; EN?: string}
+  description?: {FR?: string; RU?: string; EN?: string}
+}
+
 export interface ITitle extends IPadding {
   _type: 'title'
   _key: string
-  content: {FR: string; EN: string}
+  content: {FR: string; RU: string; EN: string}
   level: 3 | 4 | 5 | 6
   colored: boolean
 }
@@ -89,7 +100,7 @@ export interface ITitle extends IPadding {
 export interface IParagraph extends IPadding {
   _type: 'paragraph'
   _key: string
-  content: {FR: string; EN: string}
+  content: {FR: string; RU: string; EN: string}
   size: 'small' | 'large'
 }
 
@@ -97,7 +108,7 @@ export interface IImg extends IPadding {
   _type: 'img'
   _key: string
   src: {asset: {url: string}}
-  alt?: {FR?: string; EN?: string}
+  alt?: {FR?: string; RU?: string; EN?: string}
   dimensionType?: 'width' | 'height'
   dimension?: number
 }
@@ -105,18 +116,19 @@ export interface IImg extends IPadding {
 export interface IButton extends IPadding {
   _type: 'button'
   _key: string
-  text: {FR: string; EN: string}
+  text: {FR: string; RU: string; EN: string}
   link: {
     slug: {
       FR: {current: string}
+      RU: {current: string}
       EN: {current: string}
     }
   }
 }
 
 export interface ICardListItem {
-  title: {FR: string; EN: string}
-  description: {FR: string; EN: string}
+  title: {FR: string; RU: string; EN: string}
+  description: {FR: string; RU: string; EN: string}
 }
 
 export interface ICardList extends IPadding {
@@ -139,19 +151,16 @@ export interface IContactForm extends IPadding {
 
 export interface Page {
   _id: string
-  title: {EN: string; FR: string}
+  title: {FR: string; RU: string; EN: string}
   slug: {
     FR: {current: string}
+    RU: {current: string}
     EN: {current: string}
   }
   displayTitle?: boolean
-  heroImage?: {
-    src: {asset: {url: string}}
-    altFr?: string
-    altEn?: string
-  }
   body?: (
     | IGroup
+    | IHeroImage
     | ITitle
     | IParagraph
     | IImg
@@ -169,9 +178,10 @@ export interface IMenuSubItem {
   _type: 'submenuItem' | 'ensemblesListItem'
   page?: {
     _id: string
-    title: {EN: string; FR: string}
+    title: {FR: string; RU: string; EN: string}
     slug: {
       FR: {current: string}
+      RU: {current: string}
       EN: {current: string}
     }
   }
@@ -180,9 +190,10 @@ export interface IMenuSubItem {
 export interface IMenuItem {
   page: {
     _id: string
-    title: {EN: string; FR: string}
+    title: {FR: string; RU: string; EN: string}
     slug: {
       FR: {current: string}
+      RU: {current: string}
       EN: {current: string}
     }
   }
@@ -201,6 +212,12 @@ const PADDING = 'paddingTop, paddingRight, paddingBottom, paddingLeft, backgroun
 
 const BLOCK_QUERY = `
   _type, _key,
+  _type == "heroImage" => {
+    src{ asset->{ url } },
+    alt,
+    title, subtitle,
+    description,
+  },
   _type == "title" => {
     content, level, colored,
     ${PADDING}
@@ -256,11 +273,6 @@ export function usePage(slug: string) {
       .fetch(
         `*[_type == "page" && (slug.FR.current == $slug || slug.EN.current == $slug)][0]{
           _id, title, slug { FR, EN },
-          heroImage{
-            src{ asset->{ url } },
-            altFr,
-            altEn
-          },
           displayTitle,
           body[]{
             ${BLOCK_QUERY},

@@ -1,5 +1,6 @@
 export const BLOCKS = [
   {type: 'group'},
+  {type: 'heroImage'},
   {type: 'title'},
   {type: 'paragraph'},
   {type: 'img'},

@@ -17,9 +17,9 @@ export default defineType({
       title: 'Alternative Text',
       type: 'object',
       fields: [
-        {name: 'FR', title: 'Français', type: 'text'},
-        {name: 'RU', title: 'Русский', type: 'text'},
-        {name: 'EN', title: 'English', type: 'text'},
+        {name: 'FR', title: 'Français', type: 'string', validation: (rule) => rule.required(),},
+        {name: 'RU', title: 'Русский', type: 'string', validation: (rule) => rule.required(),},
+        {name: 'EN', title: 'English', type: 'string', validation: (rule) => rule.required(),},
       ],
     }),
     defineField({

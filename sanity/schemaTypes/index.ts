@@ -1,29 +1,31 @@
 import page from './page'
+import group from './group'
+import heroImage from './heroImage'
 import title from './title'
 import paragraph from './paragraph'
-import cardList from './cardList'
-import group from './group'
-import socialLinks from './socialLinks'
-import settings from './settings'
-import ensembles from './ensembles'
-import image from './image'
-import schedule from './schedule'
+import img from './image'
 import button from './button'
+import cardList from './cardList'
+import socialLinks from './socialLinks'
+import ensembles from './ensembles'
+import schedule from './schedule'
 import gallery from './gallery'
 import contactForm from './contactForm'
+import settings from './settings'
 
 export const schemaTypes = [
   page,
+  group,
+  heroImage,
   title,
   paragraph,
-  cardList,
-  group,
-  socialLinks,
-  settings,
-  ensembles,
-  image,
-  schedule,
+  img,
   button,
+  cardList,
+  socialLinks,
+  ensembles,
+  schedule,
   gallery,
   contactForm,
+  settings,
 ]

@@ -1,6 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {commonFields} from './commonFields'
-import {IconSelector} from '../components/IconSelector'
+import { commonFields } from './commonFields'
 
 export default defineType({
   name: 'cardList',
@@ -15,14 +14,6 @@ export default defineType({
         {
           type: 'object',
           fields: [
-            {
-              name: 'icon',
-              title: 'Icon',
-              type: 'string',
-              components: {
-                input: IconSelector,
-              },
-            },
             {
               name: 'title',
               title: 'Title *',
@@ -59,8 +50,18 @@ export default defineType({
                   type: 'text',
                   validation: (rule) => rule.required(),
                 },
-                {name: 'RU', title: 'Русский', type: 'text', validation: (rule) => rule.required()},
-                {name: 'EN', title: 'English', type: 'text', validation: (rule) => rule.required()},
+                {
+                  name: 'RU',
+                  title: 'Русский',
+                  type: 'text',
+                  validation: (rule) => rule.required(),
+                },
+                {
+                  name: 'EN',
+                  title: 'English',
+                  type: 'text',
+                  validation: (rule) => rule.required(),
+                },
               ],
             },
           ],

@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity'
-import { commonFields } from './commonFields'
+import {defineField, defineType} from 'sanity'
+import {commonFields} from './commonFields'
 
 export default defineType({
   name: 'paragraph',
@@ -11,11 +11,11 @@ export default defineType({
       title: 'Paragraph *',
       type: 'object',
       fields: [
-        { name: 'FR', title: 'Français', type: 'text' },
-        { name: 'RU', title: 'Русский', type: 'text' },
-        { name: 'EN', title: 'English', type: 'text' },
+        {name: 'FR', title: 'Français', type: 'text', validation: (rule) => rule.required()},
+        {name: 'RU', title: 'Русский', type: 'text', validation: (rule) => rule.required()},
+        {name: 'EN', title: 'English', type: 'text', validation: (rule) => rule.required()},
       ],
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'size',
@@ -23,12 +23,12 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Small', value: 'small' },
-          { title: 'Large', value: 'large' },
+          {title: 'Small', value: 'small'},
+          {title: 'Large', value: 'large'},
         ],
       },
       initialValue: 'small',
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     ...commonFields,
   ],
