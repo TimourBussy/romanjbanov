@@ -21,7 +21,7 @@ const submenuVariants = cva('', {
 })
 
 const submenuItemVariants = cva(
-  'flex items-center w-full transition-colors gap-2',
+  'flex items-center w-full transition-colors gap-2 rounded-md',
   {
     variants: {
       variant: {
