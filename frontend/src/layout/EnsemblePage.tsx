@@ -38,7 +38,7 @@ export function EnsemblePage({slug}: {slug: string}) {
               </Title>
               <div className="flex gap-6 justify-center text-amber-700 hover:text-amber-800">
                 {ensemble.socialMedias.map((social, index) => {
-                  const IconComponent = getIcon(social.icon)
+                  const Icon = getIcon(social.icon)
                   return (
                     <a
                       key={index}
@@ -46,7 +46,7 @@ export function EnsemblePage({slug}: {slug: string}) {
                       target="_blank"
                       className="flex items-center gap-2 transition-colors"
                     >
-                      {IconComponent && <IconComponent size={20} />}
+                      {Icon && <Icon size={20} />}
                       <span>{social.name}</span>
                   <FiExternalLink />
                 </a>

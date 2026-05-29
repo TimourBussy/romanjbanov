@@ -8,7 +8,7 @@ const titleStyle = tv({
       2: 'text-xl sm:text-2xl',
       3: 'text-2xl sm:text-3xl',
       4: 'text-xl sm:text-2xl leading-none',
-      5: 'text-lg sm:text-xl leading-none',
+      5: 'text-md sm:text-lg leading-none font-semibold',
       6: 'sm:text-lg leading-none',
     },
     colored: {

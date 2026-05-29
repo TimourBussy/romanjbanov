@@ -30,11 +30,11 @@ export function SocialLinks({
   return (
     <article className={`flex flex-wrap justify-center text-center gap-6 ${className || ''}`}>
       {settings.socialMedias.map((link, index) => {
-        const IconComponent = getIcon(link.icon)
+        const Icon = getIcon(link.icon)
         return (
           <a key={index} href={link.url} target="_blank" className="group flex flex-col gap-2">
             <div className={linkStyle({colored})}>
-              <IconComponent
+              <Icon
                 size={
                   {
                     small: 24,

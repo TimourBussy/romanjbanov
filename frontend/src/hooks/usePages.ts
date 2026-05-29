@@ -63,20 +63,28 @@ export interface IPadding {
   backgroundColor?: string
 }
 
+export type TBlockChild =
+  | IHeroImage
+  | ITitle
+  | IParagraph
+  | ICard
+  | ISocialLinks
+  | IEnsembles
+  | ISchedule
+  | IGallery
+  | IButton
+
 export interface IGroup extends IPadding {
   _type: 'group'
   _key: string
-  blocks: (
-    | IHeroImage
-    | ITitle
-    | IParagraph
-    | ICardList
-    | ISocialLinks
-    | IEnsembles
-    | ISchedule
-    | IGallery
-    | IButton
-  )[]
+  blocks: TBlockChild[]
+}
+
+export interface IRow extends IPadding {
+  _type: 'row'
+  _key: string
+  gap: number
+  blocks: TBlockChild[]
 }
 
 export interface IHeroImage extends IPadding {
@@ -126,15 +134,12 @@ export interface IButton extends IPadding {
   }
 }
 
-export interface ICardListItem {
+export interface ICard extends IPadding {
+  _type: 'card'
+  _key: string
+  icon: string
   title: {FR: string; RU: string; EN: string}
   description: {FR: string; RU: string; EN: string}
-}
-
-export interface ICardList extends IPadding {
-  _type: 'cardList'
-  _key: string
-  cards: ICardListItem[]
 }
 
 export interface ISocialLinks extends IPadding {
@@ -160,17 +165,8 @@ export interface Page {
   displayTitle?: boolean
   body?: (
     | IGroup
-    | IHeroImage
-    | ITitle
-    | IParagraph
-    | IImg
-    | IButton
-    | ICardList
-    | ISocialLinks
-    | IEnsembles
-    | ISchedule
-    | IGallery
-    | IContactForm
+    | IRow
+    | TBlockChild
   )[]
 }
 
@@ -236,10 +232,8 @@ const BLOCK_QUERY = `
     link->{ slug { FR, EN } },
     ${PADDING}
   },
-  _type == "cardList" => {
-    cards[]{
-      title, description,
-    },
+  _type == "card" => {
+    icon, title, description,
     ${PADDING}
   },
   _type == "socialLinks" => {
@@ -277,6 +271,13 @@ export function usePage(slug: string) {
           body[]{
             ${BLOCK_QUERY},
             _type == "group" => {
+              ${PADDING},
+              blocks[]{
+                ${BLOCK_QUERY}
+              }
+            },
+            _type == "row" => {
+              gap,
               ${PADDING},
               blocks[]{
                 ${BLOCK_QUERY}

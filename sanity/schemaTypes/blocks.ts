@@ -1,11 +1,12 @@
 export const BLOCKS = [
   {type: 'group'},
+  {type: 'row'},
   {type: 'heroImage'},
   {type: 'title'},
   {type: 'paragraph'},
   {type: 'img'},
   {type: 'button'},
-  {type: 'cardList'},
+  {type: 'card'},
   {type: 'socialLinks'},
   {type: 'ensembles'},
   {type: 'schedule'},

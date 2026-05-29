@@ -143,11 +143,11 @@ export default defineType({
               url: 'url',
             },
             prepare({name, icon, url}) {
-              const IconComponent = icon ? getIcon(icon) : null
+              const Icon = icon ? getIcon(icon) : null
               return {
                 title: name || 'Unnamed',
                 subtitle: url,
-                media: IconComponent && (() => <IconComponent />),
+                media: Icon && (() => <Icon />),
               }
             },
           },
@@ -270,11 +270,11 @@ export default defineType({
                       url: 'url',
                     },
                     prepare({name, icon, url}) {
-                      const IconComponent = icon ? getIcon(icon) : null
+                      const Icon = icon ? getIcon(icon) : null
                       return {
                         title: name || 'Unnamed',
                         subtitle: url,
-                        media: IconComponent && (() => <IconComponent />),
+                        media: Icon && (() => <Icon />),
                       }
                     },
                   },

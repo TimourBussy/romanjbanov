@@ -1,9 +1,9 @@
 // Import all icon sets from react-icons
-import * as FiIcons from 'react-icons/fi'
+import * as LuIcons from "react-icons/lu";
 
 // Combine all icons into a single object
 const ALL_ICON_COLLECTIONS = {
-  ...FiIcons,
+  ...LuIcons,
 }
 
 // Filter to get only icon components (functions/classes)
@@ -18,11 +18,11 @@ export function getIcon(iconName: string) {
 
 // Popular icons for social media and web (loaded by default)
 export const socialIcons = [
-  'FiFacebook',
-  'FiInstagram',
-  'FiTwitter',
-  'FiLinkedin',
-  'FiYoutube',
-  'FiTwitch',
-  'FiGlobe',
+  'LuFacebook',
+  'LuInstagram',
+  'LuTwitter',
+  'LuLinkedin',
+  'LuYoutube',
+  'LuTwitch',
+  'LuGlobe',
 ]

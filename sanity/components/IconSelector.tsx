@@ -14,7 +14,7 @@ export function IconSelector(props: any) {
       : iconsRegistry.filter((icon) => icon.toLowerCase().includes(cleanSearchTerm.toLowerCase())) // If searching, filter from all icons
   }, [searchTerm])
 
-  const IconComponent = value ? getIcon(value) : null
+  const Icon = value ? getIcon(value) : null
 
   const handleSelect = (iconName: string) => {
     onChange(set(iconName))
@@ -51,7 +51,7 @@ export function IconSelector(props: any) {
             gap={4}
             style={{border: '1px solid var(--card-border-color)', borderRadius: '4px'}}
           >
-            {IconComponent && <IconComponent size={32} />}
+            {Icon && <Icon size={32} />}
             <Box>
               <Text size={1} weight="semibold">
                 {value}
